@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grandma's Garden</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-bar" id="loading-bar"></div>
+      <h1 id="loading-percentage" class="counter">0%</h1>
+    </div>
+
+    <div class="container" id="game-container" style="display: none">
+      <h1>Welcome to Grandma's Garden</h1>
+      <p>
+        You've been invited to spend summer with your beloved grandma and help
+        her take care of her plants and veggies. However, grandma really loves
+        her garden and she would like you to prove you can care for just one
+        plant before you can be untrusted with more. Choose a plant of a
+        vegetable to grow and to take care of to unlock the rest of grandma's
+        magnifiscent garden!
+      </p>
+      <div class="plant-selection">
+        <h2>Select a Plant to Start With</h2>
+        <button id="tomatoBtn">Tomato</button>
+        <button id="lettuceBtn">Lettuce</button>
+      </div>
+      <div class="plant-status">
+        <h2>Your Plant</h2>
+        <p id="plantName">None</p>
+        <p id="growthStage">Growth Stage: 0</p>
+        <p id="health">Health: 100</p>
+        <p id="waterLevel">Water Level: 50</p>
+        <button id="waterBtn" disabled>Water Plant</button>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
