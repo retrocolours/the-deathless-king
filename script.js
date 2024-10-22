@@ -1,71 +1,68 @@
-let selectedPlant = null;
-
-const plants = {
-  tomato: { growthStage: 0, health: 100, waterLevel: 50 },
-  lettuce: { growthStage: 0, health: 100, waterLevel: 50 },
-};
-
-const plantNameEl = document.getElementById("plantName");
-const growthStageEl = document.getElementById("growthStage");
-const healthEl = document.getElementById("health");
-const waterLevelEl = document.getElementById("waterLevel");
-const waterBtn = document.getElementById("waterBtn");
-
 // Loading Screen Elements
 const loadingScreen = document.getElementById("loading-screen");
-const loadingBar = document
-  .getElementById("loading-bar")
-  .querySelector("::after");
-const loadingPercentageEl = document.getElementById("loading-percentage");
+const loadingProgressBar = document.querySelector(".loading-screen__progress");
+const loadingPercentageEl = document.querySelector(".loading-screen__percentage");
 
 // Game Container
-const gameContainer = document.getElementById("game-container");
+const gameContainer = document.getElementById('game-container');
+const textBox = document.querySelector('.game-container__text-box');
+const choiceButtons = document.querySelector('.game-container__choice-buttons');
 
-function selectPlant(plant) {
-  selectedPlant = plant;
-  plantNameEl.textContent = plant.charAt(0).toUpperCase() + plant.slice(1);
-  updatePlantStatus();
-  waterBtn.disabled = false;
+let currentState = {};
+
+// Start Game Initialization
+function startGame() {
+    currentState = {
+        scene: 'start',
+    };
+    updateScene();
 }
 
-function updatePlantStatus() {
-  if (selectedPlant) {
-    const plant = plants[selectedPlant];
-    growthStageEl.textContent = `Growth Stage: ${plant.growthStage}`;
-    healthEl.textContent = `Health: ${plant.health}`;
-    waterLevelEl.textContent = `Water Level: ${plant.waterLevel}`;
-  }
-}
+// Update the scene based on the current state
+function updateScene() {
+    switch (currentState.scene) {
+        case 'start':
+            textBox.innerHTML = "You awaken in a dark room.\nWhat will you do?";
+            renderChoices([
+                { text: "Explore the room", nextScene: 'explore' },
+                { text: "Stay still", nextScene: 'stay' },
+            ]);
+            break;
 
-function waterPlant() {
-  if (selectedPlant) {
-    const plant = plants[selectedPlant];
-    plant.waterLevel += 20;
-    if (plant.waterLevel > 100) plant.waterLevel = 100; // Max water level
-    growPlant();
-    updatePlantStatus();
-  }
-}
+        case 'explore':
+            textBox.innerHTML = "You find a door. Do you open it?";
+            renderChoices([
+                { text: "Open the door", nextScene: 'door' },
+                { text: "Go back", nextScene: 'start' },
+            ]);
+            break;
 
-function growPlant() {
-  if (selectedPlant) {
-    const plant = plants[selectedPlant];
-    if (plant.waterLevel > 20) {
-      plant.growthStage++;
-      plant.waterLevel -= 10; // Reduce water level when growing
-    } else {
-      plant.health -= 10; // Reduce health if not enough water
+        case 'stay':
+            textBox.innerHTML = "You hear strange noises. What will you do?";
+            renderChoices([
+                { text: "Investigate", nextScene: 'investigate' },
+                { text: "Wait longer", nextScene: 'wait' },
+            ]);
+            break;
+
+        // Add more cases as necessary for different scenes...
     }
-  }
 }
 
-document
-  .getElementById("tomatoBtn")
-  .addEventListener("click", () => selectPlant("tomato"));
-document
-  .getElementById("lettuceBtn")
-  .addEventListener("click", () => selectPlant("lettuce"));
-waterBtn.addEventListener("click", waterPlant);
+// Render the choices dynamically
+function renderChoices(choices) {
+    choiceButtons.innerHTML = ''; // Clear previous choices
+    choices.forEach(choice => {
+        const button = document.createElement('button');
+        button.classList.add('game-container__choice-button');
+        button.innerText = choice.text;
+        button.onclick = () => {
+            currentState.scene = choice.nextScene;
+            updateScene();
+        };
+        choiceButtons.appendChild(button);
+    });
+}
 
 // GSAP Loading Animation
 function loadGame() {
@@ -85,6 +82,7 @@ function loadGame() {
             { opacity: 0 },
             { opacity: 1, duration: 1 }
           );
+          startGame(); // Start the game after loading is done
         },
       });
     } else {
@@ -94,7 +92,7 @@ function loadGame() {
       if (currentValue > 100) currentValue = 100;
 
       loadingPercentageEl.textContent = `${currentValue}%`;
-      gsap.to(loadingBar, {
+      gsap.to(loadingProgressBar, {
         width: `${currentValue}%`,
         duration: 0.5,
         ease: "power3.inOut",
