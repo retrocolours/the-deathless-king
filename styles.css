@@ -1,86 +1,59 @@
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f0f8ff;
-  color: #333;
+/* Base Reset */
+* {
   margin: 0;
-  overflow: hidden; /* Prevent scrolling during loading */
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
+body {
+  font-family: 'Courier New', monospace; /* A typewriter-like font for a retro feel */
+  background-color: #111; /* Very dark background */
+  color: #e0e0e0; /* Light grey text for contrast */
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* Ensure loading screen is on top */
+  height: 100vh;
+  margin: 0;
 }
 
-.loading-bar {
+.game-container {
   width: 80%;
-  height: 30px;
-  background-color: #a2d5c6;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.loading-bar::after {
-  content: "";
-  display: block;
-  height: 100%;
-  background-color: #81b29a;
-  position: absolute;
-  left: 0;
-  width: 0; /* Initial width */
-  border-radius: 10px;
-}
-
-#loading-percentage {
-  margin-top: 10px;
-  font-size: 24px;
-}
-
-.container {
-  text-align: center;
-  background-color: #fff;
-  border-radius: 15px;
+  max-width: 600px;
+  min-height: 300px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  display: none; /* Initially hidden */
+  background-color: #222; /* Slightly lighter background for the game container */
+  border-radius: 5px;
+  border: 1px solid #444; /* Subtle border for clarity */
 }
 
-/* .container {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-} */
-
-h1 {
-  color: #4a9e63;
+.text-box {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Keeps line breaks in text */
 }
 
-button {
-  background-color: #a2d5c6;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-button {
+  background-color: #333;
+  color: #e0e0e0;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #444;
+  text-align: left;
   cursor: pointer;
-  margin: 10px;
   transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #81b29a;
+.choice-button:hover {
+  background-color: #555; /* Slightly brighter hover effect */
 }
 
-.plant-status {
-  margin-top: 20px;
+.choice-button:focus {
+  outline: none;
+  border-color: #888; /* Subtle focus indication */
 }
