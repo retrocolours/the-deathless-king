@@ -83,6 +83,9 @@ function loadGame() {
             { opacity: 1, duration: 1 }
           );
           startGame(); // Start the game after loading is done
+
+          // Redirect to home.html
+          window.location.href = 'home.html';
         },
       });
     } else {
