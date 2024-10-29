@@ -11,7 +11,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-   
+   margin: 1rem;
 }
 
 /* Game Title Styling */
@@ -23,6 +23,19 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
+.green {
+    color:#0c695e
+}
+
+.red {
+    color:#5f0606;
+}
+/* 
+.yellow {
+    color:#deb708;
+} */
+
 
 /* Game Description Styling */
 .game-description {
@@ -74,6 +87,7 @@ body {
     height: auto;
     border: 2px solid #444;
     border-radius: 5px;
+    background-color: #333;
 }
 
 .hero-description {
@@ -162,3 +176,4 @@ button:active {
     outline: none;
     border-color: #888;
 }
+

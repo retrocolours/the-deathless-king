@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
-    <title>Game Opening Screen</title>
-</head>
-<body>
-    <!-- Game Title -->
-    <h1 class="game-title">The Deathless King</h1>
-
-    <!-- Brief Game Description -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.css" />
+    <title>The Deathless King</title>
+  </head>
+  <body>
+    <h1 class="game-title"><span class="green">The </span><span class="red">Deathless</span><span class="green"> King</span></h1>
     <p class="game-description">
-        Greetings, wanderer. By some strange twist of fate, you have found your way into this forsaken realm—a game woven from the dark threads of Eastern European lore and myth. I am the all-seeing presence that presides over this place, and I bid you to sit by the flickering firelight. Here, you shall walk in the footsteps of heroes from ancient tales, though be warned: each choice you make shall carve your fate, and every step shall be fraught with peril and mystery.
-
-Your destiny lies before you. Dare you proceed?
+      Greetings, wanderer. By some strange twist of fate, you have found your
+      way into this forsaken realm—a game woven from the dark threads of Eastern
+      European lore and myth. I am the all-seeing presence that presides over
+      this place, and I bid you to sit by the flickering firelight. Here, you
+      shall walk in the footsteps of heroes from ancient tales, though be
+      warned: each choice you make shall carve your fate, and every step shall
+      be fraught with peril and mystery. Your destiny lies before you. Dare you
+      proceed?
     </p>
-    
-    <!-- Villain Image -->
-    <img src="./assets/images/king.jpeg" alt="Main Villain" class="villain-image">
-
-    <!-- Game Start Form -->
+    <img
+      src="./assets/images/king.jpeg"
+      alt="Main Villain"
+      class="villain-image"
+    />
     <form class="hero-selection-form">
-        <label for="player-name">Please introduce yourself:</label>
-        <input type="text" id="player-name" name="player-name" placeholder="Your name..." required>
-
-        <!-- Hero Options -->
-        <div class="hero-options">
-            <div class="hero-option">
-                <img src="hero-male.jpg" alt="Male Hero" class="hero-image">
-                <p class="hero-description">
-                    <strong>Warrior:</strong> High strength and defense, but slower attacks.
-                </p>
-                <button type="button" class="choose-hero-button" data-hero="male">Choose Warrior</button>
-            </div>
-
-            <div class="hero-option">
-                <img src="hero-female.jpg" alt="Female Hero" class="hero-image">
-                <p class="hero-description">
-                    <strong>Archer:</strong> Quick and agile, with enhanced range attacks.
-                </p>
-                <button type="button" class="choose-hero-button" data-hero="female">Choose Archer</button>
-            </div>
+      <label for="player-name">Please introduce yourself:</label>
+      <input
+        type="text"
+        id="player-name"
+        name="player-name"
+        placeholder="Your name..."
+        required
+      />
+      <div class="hero-options">
+        <div class="hero-option">
+          <img src="./assets/images/2.png" alt="Male Hero" class="hero-image" />
+          <p class="hero-description">
+            <strong>Warrior:</strong> High strength and defense, but slower
+            attacks.
+          </p>
+          <button type="button" class="choose-hero-button" data-hero="male">
+            Choose Warrior
+          </button>
         </div>
+        <div class="hero-option">
+          <img src="./assets/images/1.png" alt="Female Hero" class="hero-image" />
+          <p class="hero-description">
+            <strong>Archer:</strong> Quick and agile, with enhanced range
+            attacks.
+          </p>
+          <button type="button" class="choose-hero-button" data-hero="female">
+            Choose Archer
+          </button>
+        </div>
+      </div>
 
-        <!-- Start Game Button -->
-        <button type="submit" class="start-game-button">Start Game</button>
+      <button type="submit" class="start-game-button">Start Game</button>
     </form>
 
     <!-- Game Container (Hidden by Default) -->
-    <div id="game-container" class="game-container" style="display:none;">
-        <div class="game-container__text-box"></div>
-        <div class="game-container__choice-buttons"></div>
+    <div id="game-container" class="game-container" style="display: none">
+      <div class="game-container__text-box"></div>
+      <div class="game-container__choice-buttons"></div>
     </div>
     <script src="home.js"></script>
-</body>
+  </body>
 </html>
