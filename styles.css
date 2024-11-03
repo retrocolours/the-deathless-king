@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Courier New', monospace; /* Retro, typewriter-like font */
-  background-color: #111; /* Very dark background for the game */
+  background-color: #000000; /* Very dark background for the game */
   color: #e0e0e0; /* Light grey text for contrast */
   display: flex;
   justify-content: center;

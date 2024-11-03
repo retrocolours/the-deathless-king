@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Unicase:wght@300;400;500;600;700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Uncial+Antiqua&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Unicase:wght@300;400;500;600;700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Uncial+Antiqua&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
-/* General Body Styling */
 body {
   font-family: "Courier New", monospace;
   background-color: #000000;
@@ -16,8 +15,6 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  margin: 1rem;
- 
 }
 
 /* .home-screen__container {
@@ -36,18 +33,10 @@ body {
   font-family: "Cinzel Decorative", serif;
   font-weight: 400;
   font-style: normal;
-}
-
-.green {
-  color: #0c695e;
-}
-
-.red {
-  color: #5f0606;
-}
-
-.yellow {
-  color: #deb708;
+  color: #ad0a0a;
+  text-shadow: 0 0 5px #5f0606, /* Slight inner glow */ 0 0 10px #5f0606,
+    /* Medium glow */ 0 0 15px #5f0606, /* Larger glow */ 0 0 20px #ff0000,
+    /* Outer red glow for intensity */ 0 0 30px #ff0000, 0 0 40px #ff0000;
 }
 
 /* Game Description Styling */
@@ -62,7 +51,7 @@ body {
   /* color: white;
   text-shadow: 2px 2px 3px black; /* Subtle shadow */
   /* border: 1px solid rgba(0, 0, 0, 0.5); Thin, semi-transparent border */
-  /* padding: 2px; Adds some spacing around text */ */
+  /* padding: 2px; Adds some spacing around text */
 
   /* font-family: "Spectral", serif;
   font-weight: 300;
@@ -78,12 +67,25 @@ body {
   border-radius: 5px;
 }
 
-/* Hero Selection Form */
-.hero-selection-form {
+/* Introduce Yourself Form */
+.home-screen__form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid #f9f7f7;
+  padding: 1rem 5rem;
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
 }
+
+input::placeholder {
+    font-family: "Alice", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+  }
 
 /* Hero Options Container */
 .hero-options {

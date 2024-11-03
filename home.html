@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="home.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <title>The Deathless King</title>
   </head>
   <body>
-    <!-- <div class="home-screen__container"> -->
-    <h1 class="home-screen__title">
-      <span class="green">The </span><span class="red">Deathless</span
-      ><span class="yellow"> King</span>
-    </h1>
+    <h1 class="home-screen__title">The Deathless King</h1>
+    <img
+      src="./assets/images/king.jpeg"
+      alt="Main Villain"
+      class="villain-image"
+    />
     <p class="game-description">
       Greetings, wanderer. By some strange twist of fate, you have found your
       way into this forsaken realm—a game woven from the dark threads of Eastern
@@ -22,13 +24,19 @@
       be fraught with peril and mystery. Your destiny lies before you. Dare you
       proceed?
     </p>
-    <img
-      src="./assets/images/king.jpeg"
-      alt="Main Villain"
-      class="villain-image"
-    />
-    <!-- </div> -->
-    <form class="hero-selection-form">
+    <form class="home-screen__form" id="player-name-form">
+      <label for="player-name">Please introduce yourself:</label>
+      <input
+        type="text"
+        id="player-name"
+        name="player-name"
+        placeholder="They call me..."
+        required
+      />
+      <button type="button" id="start-game-button" disabled>Start Game</button>
+    </form>
+
+    <!-- <form class="home-screen__form">
       <label for="player-name">Please introduce yourself:</label>
       <input
         type="text"
@@ -36,8 +44,8 @@
         name="player-name"
         placeholder="Your name..."
         required
-      />
-      <div class="hero-options">
+      /> -->
+    <!-- <div class="hero-options">
         <div class="hero-option">
           <img src="./assets/images/2.png" alt="Male Hero" class="hero-image" />
           <p class="hero-description">
@@ -63,15 +71,12 @@
           </button>
         </div>
       </div>
-
       <button type="submit" class="start-game-button">Start Game</button>
     </form>
-
-    <!-- Game Container (Hidden by Default) -->
     <div id="game-container" class="game-container" style="display: none">
       <div class="game-container__text-box"></div>
       <div class="game-container__choice-buttons"></div>
-    </div>
+    </div> -->
     <script src="home.js"></script>
   </body>
 </html>
