@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Working Title</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
-      defer
-    ></script>
-  </head>
-  <body>
-    <div id="loading-screen" class="loading-screen">
-      <div class="loading-screen__bar">
-        <div class="loading-screen__progress"></div> <!-- This is the progress element -->
-      </div>
-      <p class="loading-screen__percentage">0%</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Deathless King</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+    defer
+  ></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-screen__bar">
+      <div class="loading-screen__progress"></div>
     </div>
+    <p class="loading-screen__percentage">0%</p>
+  </div>
 
-    <!-- Game Container -->
-    <div id="game-container" class="game-container" style="display:none;">
-      <div class="game-container__text-box"></div>
-      <div class="game-container__choice-buttons"></div>
+  <h1 class="home-screen__title">The Deathless King</h1>
+
+  <div class="villain-container">
+    <img
+      src="./assets/images/king.jpeg"
+      alt="Main Villain"
+      class="villain-image"
+    />
+    <div class="text-container">
+      <p class="game-description">
+        Greetings, wanderer. By some strange twist of fate, you have found your
+        way into this forsaken realm—a game woven from the dark threads of
+        Eastern European lore and myth. I am the all-seeing presence that
+        presides over this place, and I bid you to sit by the flickering
+        firelight. Here, you shall walk in the footsteps of heroes from ancient
+        tales, though be warned: each choice you make shall carve your fate, and
+        every step shall be fraught with peril and mystery. Your destiny lies
+        before you. Dare you proceed?
+      </p>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <form class="home-screen__form" id="player-name-form">
+    <label for="player-name">Please introduce yourself:</label>
+    <input
+      type="text"
+      id="player-name"
+      name="player-name"
+      placeholder="They call me..."
+      required
+    />
+    <button type="button" id="start-game-button" disabled>Start Game</button>
+  </form>
+</body>
 </html>

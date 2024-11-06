@@ -1,108 +1,112 @@
-// Loading Screen Elements
-const loadingScreen = document.getElementById("loading-screen");
-const loadingProgressBar = document.querySelector(".loading-screen__progress");
-const loadingPercentageEl = document.querySelector(".loading-screen__percentage");
+// Ensure DOM and GSAP are ready before starting
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingScreen = document.getElementById("loading-screen");
+  const loadingProgressBar = document.querySelector(".loading-screen__progress");
+  const loadingPercentageEl = document.querySelector(".loading-screen__percentage");
 
-// Game Container
-const gameContainer = document.getElementById('game-container');
-const textBox = document.querySelector('.game-container__text-box');
-const choiceButtons = document.querySelector('.game-container__choice-buttons');
+  const titleElement = document.querySelector(".home-screen__title");
+  const villainImage = document.querySelector(".villain-image");
+  const textElement = document.querySelector(".game-description");
+  const formElement = document.querySelector(".home-screen__form");
 
-let currentState = {};
+  const textContent = textElement.textContent;
+  textElement.textContent = "";
 
-// Start Game Initialization
-function startGame() {
-    currentState = {
-        scene: 'start',
-    };
-    updateScene();
-}
+  let index = 0;
 
-// Update the scene based on the current state
-function updateScene() {
-    switch (currentState.scene) {
-        case 'start':
-            textBox.innerHTML = "You awaken in a dark room.\nWhat will you do?";
-            renderChoices([
-                { text: "Explore the room", nextScene: 'explore' },
-                { text: "Stay still", nextScene: 'stay' },
-            ]);
-            break;
+  gsap.set([titleElement, villainImage, textElement, formElement], { opacity: 0 });
 
-        case 'explore':
-            textBox.innerHTML = "You find a door. Do you open it?";
-            renderChoices([
-                { text: "Open the door", nextScene: 'door' },
-                { text: "Go back", nextScene: 'start' },
-            ]);
-            break;
+  gsap.set(titleElement, {
+    opacity: 0,
+    fontSize: "4em",
+    xPercent: -50,
+    yPercent: -50,
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+  });
 
-        case 'stay':
-            textBox.innerHTML = "You hear strange noises. What will you do?";
-            renderChoices([
-                { text: "Investigate", nextScene: 'investigate' },
-                { text: "Wait longer", nextScene: 'wait' },
-            ]);
-            break;
+  function loadGame() {
+    let currentValue = 0;
 
-        // Add more cases as necessary for different scenes...
-    }
-}
+    const loadingInterval = setInterval(() => {
+      if (currentValue >= 100) {
+        clearInterval(loadingInterval);
+        gsap.to(loadingPercentageEl, {
+          opacity: 0,
+          duration: 1,
+          onComplete: () => {
+            loadingScreen.style.display = "none";
+            titleFadeInOut();
+          },
+        });
+      } else {
+        let randomIncrease = Math.floor(Math.random() * 10) + 1;
+        currentValue += randomIncrease;
+        if (currentValue > 100) currentValue = 100;
 
-// Render the choices dynamically
-function renderChoices(choices) {
-    choiceButtons.innerHTML = ''; // Clear previous choices
-    choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.classList.add('game-container__choice-button');
-        button.innerText = choice.text;
-        button.onclick = () => {
-            currentState.scene = choice.nextScene;
-            updateScene();
-        };
-        choiceButtons.appendChild(button);
+        loadingPercentageEl.textContent = `${currentValue}%`;
+        gsap.to(loadingProgressBar, {
+          width: `${currentValue}%`,
+          duration: 0.5,
+          ease: "power3.inOut",
+        });
+      }
+    }, 200);
+  }
+
+  function titleFadeInOut() {
+    gsap.to(titleElement, {
+      opacity: 1,
+      duration: 3,
+      ease: "power3.inOut",
+      onComplete: () => {
+        gsap.to(titleElement, {
+          delay: 2,
+          opacity: 0,
+          duration: 2,
+          ease: "power3.inOut",
+          onComplete: () => villainImageFadeIn(),
+        });
+      },
     });
-}
+  }
 
-// GSAP Loading Animation
-function loadGame() {
-  let currentValue = 0;
+  function villainImageFadeIn() {
+    gsap.to(villainImage, {
+      opacity: 1,
+      duration: 2.5,
+      ease: "power3.inOut",
+      onComplete: () => textFadeIn(),
+    });
+  }
 
-  const loadingInterval = setInterval(() => {
-    if (currentValue >= 100) {
-      clearInterval(loadingInterval);
-      gsap.to(loadingPercentageEl, {
-        opacity: 0,
-        duration: 1,
-        onComplete: () => {
-          loadingScreen.style.display = "none"; // Hide loading screen
-          gameContainer.style.display = "block"; // Show game content
-          gsap.fromTo(
-            gameContainer,
-            { opacity: 0 },
-            { opacity: 1, duration: 1 }
-          );
-          startGame(); // Start the game after loading is done
+  function textFadeIn() {
+    gsap.to(textElement, {
+      opacity: 1,
+      duration: 1,
+      onComplete: () => typeText(),
+    });
+  }
 
-          // Redirect to home.html
-          window.location.href = 'home.html';
-        },
-      });
+  function typeText() {
+    if (index < textContent.length) {
+      textElement.textContent += textContent.charAt(index);
+      index++;
+      setTimeout(typeText, 50);
     } else {
-      // Randomly increase the loading percentage
-      let randomIncrease = Math.floor(Math.random() * 10) + 1; // Random value between 1 and 10
-      currentValue += randomIncrease;
-      if (currentValue > 100) currentValue = 100;
-
-      loadingPercentageEl.textContent = `${currentValue}%`;
-      gsap.to(loadingProgressBar, {
-        width: `${currentValue}%`,
-        duration: 0.5,
-        ease: "power3.inOut",
-      });
+      formFadeIn();
     }
-  }, 200); // Update every 200 ms
-}
+  }
 
-// Start loading animation
-window.onload = loadGame;
+  function formFadeIn() {
+    gsap.to(formElement, {
+      opacity: 1,
+      duration: 1.5,
+      ease: "power3.inOut",
+    });
+  }
+
+  loadGame();
+});
