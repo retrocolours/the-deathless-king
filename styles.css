@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
-
-
 body {
-  font-family: "Courier New", monospace;
+  /* font-family: "Courier New", monospace; */
+  font-family: "Cinzel Decorative", serif;
   background-color: #000000;
   color: #e0e0e0;
   display: flex;
@@ -13,11 +12,9 @@ body {
   min-height: 100vh;
   margin-top: 1rem; /* increase if needed image moved */
   margin-bottom: 1rem;
-
-
 }
 
-.home-screen__title {
+.title {
   font-size: 2.5em;
   margin: 10px;
   text-align: center;
@@ -25,27 +22,25 @@ body {
   font-weight: 400;
   color: #ad0a0a;
   text-shadow: 0 0 5px #5f0606, 0 0 10px #5f0606, 0 0 15px #5f0606,
- 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+    0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
 }
 
-.villain-container {
+.about {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
 
 /* Villain Image Styling */
-.villain-image {
+.about__image {
   width: 25%;
   height: 25%;
   border: 2px solid #444;
   border-radius: 5px;
-  
 }
 
 /* Text Container with Increased Height */
-.text-container {
+.about__container {
   width: 100%;
   max-width: 700px;
   height: 250px; /* Increased height to ensure text is fully visible */
@@ -53,16 +48,16 @@ body {
 }
 
 /* Game Description Styling */
-.game-description {
+.about__description {
   font-size: 1.2em;
   text-align: center;
   font-family: "Cardo", serif;
-padding-top: 1rem;
+  padding-top: 1rem;
   caret-color: transparent; /* Hides the blinking text cursor */
 }
 
 /* Form Styling with Spacing Above */
-.home-screen__form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,7 +66,7 @@ padding-top: 1rem;
   font-family: "Alice", serif;
   font-weight: 400;
   letter-spacing: 1px;
- /* Space between text and form to prevent overlap */
+  /* Space between text and form to prevent overlap */
 }
 
 input::placeholder {
@@ -86,7 +81,7 @@ input::placeholder {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #111;
+  background-color: #000000;
   color: #e0e0e0;
   display: flex;
   flex-direction: column;

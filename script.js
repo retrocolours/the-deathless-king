@@ -1,20 +1,29 @@
-// Ensure DOM and GSAP are ready before starting
+// Ensures DOM and GSAP are ready before starting
 document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
-  const loadingProgressBar = document.querySelector(".loading-screen__progress");
-  const loadingPercentageEl = document.querySelector(".loading-screen__percentage");
+  const loadingProgressBar = document.querySelector(
+    ".loading-screen__progress"
+  );
+  const loadingPercentageEl = document.querySelector(
+    ".loading-screen__percentage"
+  );
 
-  const titleElement = document.querySelector(".home-screen__title");
-  const villainImage = document.querySelector(".villain-image");
-  const textElement = document.querySelector(".game-description");
-  const formElement = document.querySelector(".home-screen__form");
+  //These are the elements I want to load 
+  const titleElement = document.querySelector(".title");
+  const villainImage = document.querySelector(".about__image");
+  const textElement = document.querySelector(".about__description");
+  const formElement = document.querySelector(".form");
+  
 
   const textContent = textElement.textContent;
   textElement.textContent = "";
+  //This stores the initial content of textElement (likely a paragraph) in textContent for later use, then clears textElement to prepare it for a typewriter effect.
 
   let index = 0;
 
-  gsap.set([titleElement, villainImage, textElement, formElement], { opacity: 0 });
+  gsap.set([titleElement, villainImage, textElement, formElement], {
+    opacity: 0,
+  });
 
   gsap.set(titleElement, {
     opacity: 0,
