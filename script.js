@@ -122,3 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadGame();
 });
+
+
+document.getElementById("start-game-button").addEventListener("click", function() {
+  window.location.href = "game.html"; 
+});
