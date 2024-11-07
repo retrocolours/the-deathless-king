@@ -8,19 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
     ".loading-screen__percentage"
   );
 
-  //These are the elements I want to load 
+  //These are the elements I want to load
   const titleElement = document.querySelector(".title");
   const villainImage = document.querySelector(".about__image");
   const textElement = document.querySelector(".about__description");
   const formElement = document.querySelector(".form");
-  
 
+  //This stores the initial content of textElememtn (p) in textContent for later use, then clears textElement to prepare it for a typewriter effect.
   const textContent = textElement.textContent;
   textElement.textContent = "";
-  //This stores the initial content of textElement (likely a paragraph) in textContent for later use, then clears textElement to prepare it for a typewriter effect.
 
+  // Initializes an index variable for use in the typewriter effect that will display textContent one character at a time.
   let index = 0;
 
+  //Makes these elemtns invisible at the start.
   gsap.set([titleElement, villainImage, textElement, formElement], {
     opacity: 0,
   });
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadGame() {
     let currentValue = 0;
+    //loading progress percentage, starts at 0
 
     const loadingInterval = setInterval(() => {
       if (currentValue >= 100) {
@@ -46,15 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
           opacity: 0,
           duration: 1,
           onComplete: () => {
-            loadingScreen.style.display = "none";
-            titleFadeInOut();
+            loadingScreen.style.display = "none"; // stops displaying the loading bar
+            titleFadeInOut(); //title appears
           },
         });
       } else {
         let randomIncrease = Math.floor(Math.random() * 10) + 1;
         currentValue += randomIncrease;
         if (currentValue > 100) currentValue = 100;
-
+        // Generates a random increase in loading percentage (1–10%) for a dynamic loading experience. Ensures currentValue does not exceed 100.
         loadingPercentageEl.textContent = `${currentValue}%`;
         gsap.to(loadingProgressBar, {
           width: `${currentValue}%`,
@@ -90,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       onComplete: () => textFadeIn(),
     });
   }
-
+  //text loads and then proceeds to typing
   function textFadeIn() {
     gsap.to(textElement, {
       opacity: 1,
@@ -99,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  //Displays textContent one character at a time, with a 50-millisecond delay between each character for a typewriter effect. Once complete, it calls formFadeIn() to load the form.
   function typeText() {
     if (index < textContent.length) {
       textElement.textContent += textContent.charAt(index);
