@@ -1,53 +1,99 @@
-/* Base Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
 body {
-  font-family: 'Courier New', monospace; /* Retro, typewriter-like font */
-  background-color: #111; /* Very dark background for the game */
-  color: #e0e0e0; /* Light grey text for contrast */
+  /* font-family: "Courier New", monospace; */
+  font-family: "Cinzel Decorative", serif;
+  background-color: #000000;
+  color: #e0e0e0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden; /* Prevent scrolling during loading */
+  justify-content: center;
+  min-height: 100vh;
+  margin-top: 1rem; /* increase if needed image moved */
+  margin-bottom: 1rem;
 }
 
-.game-container {
-  width: 80%;
-  max-width: 600px;
-  min-height: 300px;
-  padding: 20px;
-  background-color: #222; /* Slightly lighter background for the game container */
+.title {
+  font-size: 2.5em;
+  margin: 10px;
+  text-align: center;
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 400;
+  color: #ad0a0a;
+  text-shadow: 0 0 5px #5f0606, 0 0 10px #5f0606, 0 0 15px #5f0606,
+    0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about__image {
+  width: 25%;
+  height: 25%;
+  border: 2px solid #444;
   border-radius: 5px;
-  border: 1px solid #444; /* Subtle border for clarity */
 }
 
-/* Loading Screen */
+
+.about__container {
+  width: 100%;
+  max-width: 700px;
+  height: 250px; /* Increased height to ensure text is fully visible */
+  overflow-y: auto; /* Allows scrolling if text exceeds the height */
+}
+
+
+.about__description {
+  font-size: 1.2em;
+  text-align: center;
+  font-family: "Cardo", serif;
+  padding-top: 1rem;
+  caret-color: transparent; /* Hides the blinking text cursor */
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #f9f7f7;
+  padding: 1rem 7rem;
+  font-family: "Alice", serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  /* Space between text and form to prevent overlap */
+}
+
+input::placeholder {
+  font-family: "Alice", serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
 .loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #111; /* Match body background to keep it dark and moody */
-  color: #e0e0e0; /* Keep text color consistent */
+  background-color: #000000;
+  color: #e0e0e0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* Ensure the loading screen is on top */
+  z-index: 10;
 }
 
 .loading-screen__bar {
   width: 80%;
-  height: 20px; /* Slightly thinner for a sleek look */
-  background-color: #333; /* Dark background for the loading bar */
-  border-radius: 5px; /* Smooth, rounded edges */
+  height: 20px;
+  background-color: #333;
+  border-radius: 5px;
   overflow: hidden;
   position: relative;
 }
@@ -55,25 +101,63 @@ body {
 .loading-screen__progress {
   display: block;
   height: 100%;
-  background-color: #c7c9c8; /* Calm, muted green for progress */
+  background-color: #c7c9c8;
   position: absolute;
   left: 0;
-  width: 0; /* Initial width */
-  transition: width 0.3s ease; /* Smooth animation for progress */
-  border-radius: 5px; /* Match border radius */
+  width: 0;
+  transition: width 0.3s ease;
+  border-radius: 5px;
 }
 
 .loading-screen__percentage {
   margin-top: 10px;
-  font-size: 18px; /* Slightly smaller for subtlety */
+  font-size: 18px;
 }
 
-/* Text and Buttons Styling */
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+button:active {
+  background-color: #777;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #222;
+  color: #e0e0e0;
+}
+
+.game-container {
+  width: 80%;
+  max-width: 600px;
+  min-height: 300px;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 5px;
+  border: 1px solid #444;
+  display: none;
+}
+
 .game-container__text-box {
   font-size: 1.1em;
   margin-bottom: 20px;
   line-height: 1.5;
-  white-space: pre-wrap; /* Keeps line breaks in text */
+  white-space: pre-wrap;
 }
 
 .game-container__choice-buttons {
@@ -93,10 +177,10 @@ body {
 }
 
 .game-container__choice-button:hover {
-  background-color: #555; /* Slightly brighter hover effect */
+  background-color: #555;
 }
 
 .game-container__choice-button:focus {
   outline: none;
-  border-color: #888; /* Subtle focus indication */
+  border-color: #888;
 }

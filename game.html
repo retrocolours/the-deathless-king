@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+      defer
+    ></script>
+    <script src="game.js" defer></script>
+
+  </head>
+  <body>
+    <!-- Game Container -->
+    <div id="game-container" class="game-container" style="display: none">
+      <div class="game-container__text-box"></div>
+      <div class="game-container__choice-buttons"></div>
+    </div>
+
+    <form class="form">
+      <label for="player-name">Please introduce yourself:</label>
+      <input
+        type="text"
+        id="player-name"
+        name="player-name"
+        placeholder="Your name..."
+        required
+      /> 
+    <div class="hero-options">
+        <div class="hero-option">
+          <img src="./assets/images/2.png" alt="Male Hero" class="hero-image" />
+          <p class="hero-description">
+            <strong>Warrior:</strong> High strength and defense, but slower
+            attacks.
+          </p>
+          <button type="button" class="choose-hero-button" data-hero="male">
+            Choose Warrior
+          </button>
+        </div>
+        <div class="hero-option">
+          <img
+            src="./assets/images/1.png"
+            alt="Female Hero"
+            class="hero-image"
+          />
+          <p class="hero-description">
+            <strong>Archer:</strong> Quick and agile, with enhanced range
+            attacks.
+          </p>
+          <button type="button" class="choose-hero-button" data-hero="female">
+            Choose Archer
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="start-game-button">Start Game</button>
+    </form>
+    <div id="game-container" class="game-container" style="display: none">
+      <div class="game-container__text-box"></div>
+      <div class="game-container__choice-buttons"></div>
+    </div>
+    
+  </body>
+  
+</html>
