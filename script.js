@@ -123,6 +123,17 @@ document.addEventListener("DOMContentLoaded", () => {
   loadGame();
 });
 
+document.getElementById("start-game-button").addEventListener("click", function() {
+  const playerName = document.getElementById("player-name").value; // Assumes the input field for the name has an id="player-name"
+  if (playerName) {
+    localStorage.setItem("playerName", playerName); // Save the name in localStorage
+    window.location.href = "game.html"; // Navigate to game.html
+  } else {
+    alert("Please enter your name!"); // validation
+  }
+});
+
+
 
 document.getElementById("start-game-button").addEventListener("click", function() {
   window.location.href = "game.html"; 
