@@ -8,20 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ".loading-screen__percentage"
   );
 
-  //These are the elements I want to load
+  // Elements to load
   const titleElement = document.querySelector(".title");
   const villainImage = document.querySelector(".about__image");
   const textElement = document.querySelector(".about__description");
   const formElement = document.querySelector(".form");
 
-  //This stores the initial content of textElememtn (p) in textContent for later use, then clears textElement to prepare it for a typewriter effect.
+  // Stores the initial text for typewriter effect and clears the element
   const textContent = textElement.textContent;
   textElement.textContent = "";
 
-  // Initializes an index variable for use in the typewriter effect that will display textContent one character at a time.
-  let index = 0;
-
-  //Makes these elemtns invisible at the start.
+  // Make elements invisible initially
   gsap.set([titleElement, villainImage, textElement, formElement], {
     opacity: 0,
   });
@@ -39,8 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadGame() {
     let currentValue = 0;
-    //loading progress percentage, starts at 0
-
     const loadingInterval = setInterval(() => {
       if (currentValue >= 100) {
         clearInterval(loadingInterval);
@@ -48,15 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
           opacity: 0,
           duration: 1,
           onComplete: () => {
-            loadingScreen.style.display = "none"; // stops displaying the loading bar
-            titleFadeInOut(); //title appears
+            loadingScreen.style.display = "none";
+            titleFadeInOut();
           },
         });
       } else {
         let randomIncrease = Math.floor(Math.random() * 10) + 1;
         currentValue += randomIncrease;
         if (currentValue > 100) currentValue = 100;
-        // Generates a random increase in loading percentage (1–10%) for a dynamic loading experience. Ensures currentValue does not exceed 100.
+        // Update progress bar and percentage
         loadingPercentageEl.textContent = `${currentValue}%`;
         gsap.to(loadingProgressBar, {
           width: `${currentValue}%`,
@@ -92,24 +87,29 @@ document.addEventListener("DOMContentLoaded", () => {
       onComplete: () => textFadeIn(),
     });
   }
-  //text loads and then proceeds to typing
+
   function textFadeIn() {
     gsap.to(textElement, {
       opacity: 1,
       duration: 1,
-      onComplete: () => typeText(),
+      onComplete: () => typeText(textContent, formFadeIn, 60),
     });
   }
 
-  //Displays textContent one character at a time, with a 50-millisecond delay between each character for a typewriter effect. Once complete, it calls formFadeIn() to load the form.
-  function typeText() {
-    if (index < textContent.length) {
-      textElement.textContent += textContent.charAt(index);
-      index++;
-      setTimeout(typeText, 50);
-    } else {
-      formFadeIn();
+  function typeText(text, callback, speed = 60) {
+    let index = 0;
+
+    function typeCharacter() {
+      if (index < text.length) {
+        textElement.textContent += text.charAt(index); // Append each character
+        index++;
+        setTimeout(typeCharacter, speed);
+      } else if (callback) {
+        setTimeout(callback, 500); // Delay before showing the form
+      }
     }
+
+    typeCharacter();
   }
 
   function formFadeIn() {
@@ -123,7 +123,27 @@ document.addEventListener("DOMContentLoaded", () => {
   loadGame();
 });
 
+// Start Game button click handler
+document
+  .getElementById("start-game-button")
+  .addEventListener("click", function () {
+    const playerName = document.getElementById("player-name").value;
+    if (playerName) {
+      localStorage.setItem("playerName", playerName);
+      localStorage.setItem("gameStarted", "false"); // Reset game start flag
+      window.location.href = "game.html"; // Navigate to game.html
+    } else {
+      alert("Please enter your name!"); // Validate input
+    }
+  });
 
-document.getElementById("start-game-button").addEventListener("click", function() {
-  window.location.href = "game.html"; 
-});
+localStorage.setItem("newGameStart", "true");
+
+// if (!localStorage.getItem("gameInProgress")) {
+//   localStorage.setItem("newGameStart", "true");
+// }
+
+// Additional click listener for the Start Game button to ensure navigation to game.html
+// document.getElementById("start-game-button").addEventListener("click", function() {
+//   window.location.href = "game.html";
+// });
