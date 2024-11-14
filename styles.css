@@ -151,14 +151,14 @@ input[type="text"] {
   display: none;
 }
 
-.game-container__text-box {
+.game-container__game-container__text {
   font-size: 1.1em;
   margin-bottom: 20px;
   line-height: 1.5;
   white-space: pre-wrap;
 }
 
-.game-container__choice-buttons {
+.game-container__game-container__buttons {
   display: flex;
   flex-direction: column;
 }

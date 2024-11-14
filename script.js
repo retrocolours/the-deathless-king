@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
           opacity: 0,
           duration: 1,
           onComplete: () => {
-            loadingScreen.style.display = "none"; 
-            titleFadeInOut(); 
+            loadingScreen.style.display = "none";
+            titleFadeInOut();
           },
         });
       } else {
@@ -136,6 +136,12 @@ document
       alert("Please enter your name!"); // Validate input
     }
   });
+
+localStorage.setItem("newGameStart", "true");
+
+// if (!localStorage.getItem("gameInProgress")) {
+//   localStorage.setItem("newGameStart", "true");
+// }
 
 // Additional click listener for the Start Game button to ensure navigation to game.html
 // document.getElementById("start-game-button").addEventListener("click", function() {
