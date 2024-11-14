@@ -29,6 +29,8 @@ body {
   flex-direction: column;
 }
 
+
+
 .inventory.visible {
   display: flex;
 }
