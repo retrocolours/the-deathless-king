@@ -1,4 +1,4 @@
-// Ensures DOM and GSAP are ready before starting
+// Ensure DOM and GSAP are ready before starting
 document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
   const loadingProgressBar = document.querySelector(
@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const textElement = document.querySelector(".about__description");
   const formElement = document.querySelector(".form");
 
-  // Stores the initial text for typewriter effect and clears the element
-  const textContent = textElement.textContent;
+  // Get the initial text for the typewriter effect and clear it
+  const textContent = textElement.textContent.trim();
   textElement.textContent = "";
 
   // Make elements invisible initially
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
   });
 
+  // Center title for a dramatic effect
   gsap.set(titleElement, {
-    opacity: 0,
     fontSize: "4em",
     xPercent: -50,
     yPercent: -50,
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let randomIncrease = Math.floor(Math.random() * 10) + 1;
         currentValue += randomIncrease;
         if (currentValue > 100) currentValue = 100;
-        // Update progress bar and percentage
+
         loadingPercentageEl.textContent = `${currentValue}%`;
         gsap.to(loadingProgressBar, {
           width: `${currentValue}%`,
@@ -92,24 +92,25 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.to(textElement, {
       opacity: 1,
       duration: 1,
-      onComplete: () => typeText(textContent, formFadeIn, 60),
+      onComplete: () => typeWriterEffect(textContent, formFadeIn, 50), // Typing speed: 50ms per character
     });
   }
 
-  function typeText(text, callback, speed = 60) {
+  function typeWriterEffect(text, callback, speed = 50) {
     let index = 0;
 
+    // Use a buffered approach
     function typeCharacter() {
       if (index < text.length) {
-        textElement.textContent += text.charAt(index); // Append each character
+        textElement.textContent += text[index]; // Append a single character
         index++;
-        setTimeout(typeCharacter, speed);
+        setTimeout(typeCharacter, speed); // Delay before adding the next character
       } else if (callback) {
-        setTimeout(callback, 500); // Delay before showing the form
+        callback(); // Trigger callback when typing is done
       }
     }
 
-    typeCharacter();
+    typeCharacter(); // Start typing
   }
 
   function formFadeIn() {
@@ -120,30 +121,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Initialize the loading sequence
   loadGame();
 });
 
-// Start Game button click handler
+// Start Game button functionality
 document
   .getElementById("start-game-button")
   .addEventListener("click", function () {
     const playerName = document.getElementById("player-name").value;
     if (playerName) {
       localStorage.setItem("playerName", playerName);
-      localStorage.setItem("gameStarted", "false"); // Reset game start flag
-      window.location.href = "game.html"; // Navigate to game.html
+      localStorage.setItem("gameStarted", "false");
+      window.location.href = "game.html"; // Navigate to game screen
     } else {
-      alert("Please enter your name!"); // Validate input
+      alert("Please enter your name!");
     }
   });
 
 localStorage.setItem("newGameStart", "true");
-
-// if (!localStorage.getItem("gameInProgress")) {
-//   localStorage.setItem("newGameStart", "true");
-// }
-
-// Additional click listener for the Start Game button to ensure navigation to game.html
-// document.getElementById("start-game-button").addEventListener("click", function() {
-//   window.location.href = "game.html";
-// });

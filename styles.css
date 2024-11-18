@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
+
+/* 
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+  font-display: swap;
+} */
+
+
+
 body {
   /* font-family: "Courier New", monospace; */
   font-family: "Cinzel Decorative", serif;
@@ -19,6 +29,7 @@ body {
   margin: 10px;
   text-align: center;
   font-family: "Cinzel Decorative", serif;
+  font-display: swap;
   font-weight: 400;
   color: #ad0a0a;
   text-shadow: 0 0 5px #5f0606, 0 0 10px #5f0606, 0 0 15px #5f0606,
@@ -49,7 +60,7 @@ body {
   font-size: 1.2em;
   text-align: justify;
   font-family: "Cardo", serif;
-
+font-display: swap;
   padding-bottom: 1rem;
   caret-color: transparent;
 }
