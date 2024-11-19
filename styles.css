@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
-
 /* 
 @font-face {
   font-family: "Cinzel Decorative";
   src: url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
   font-display: swap;
 } */
-
-
 
 body {
   /* font-family: "Courier New", monospace; */
@@ -58,10 +55,9 @@ body {
 
 .about__description {
   font-size: 1.2em;
-  text-align: justify;
+  text-align: center;
   font-family: "Cardo", serif;
-font-display: swap;
-  padding-bottom: 1rem;
+  font-display: swap;
   caret-color: transparent;
 }
 

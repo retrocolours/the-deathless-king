@@ -1,4 +1,3 @@
-// Ensure DOM and GSAP are ready before starting
 document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
   const loadingProgressBar = document.querySelector(
@@ -8,22 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ".loading-screen__percentage"
   );
 
-  // Elements to load
   const titleElement = document.querySelector(".title");
   const villainImage = document.querySelector(".about__image");
-  const textElement = document.querySelector(".about__description");
+  const paragraphs = document.querySelectorAll(".about__container p");
   const formElement = document.querySelector(".form");
 
-  // Get the initial text for the typewriter effect and clear it
-  const textContent = textElement.textContent.trim();
-  textElement.textContent = "";
-
-  // Make elements invisible initially
-  gsap.set([titleElement, villainImage, textElement, formElement], {
+  // Hide elements initially
+  gsap.set([titleElement, villainImage, paragraphs, formElement], {
     opacity: 0,
   });
 
-  // Center title for a dramatic effect
+  // Center title for dramatic effect
   gsap.set(titleElement, {
     fontSize: "4em",
     xPercent: -50,
@@ -89,39 +83,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function textFadeIn() {
-    gsap.to(textElement, {
-      opacity: 1,
-      duration: 1,
-      onComplete: () => typeWriterEffect(textContent, formFadeIn, 50), // Typing speed: 50ms per character
+    // Array of custom delays for each paragraph
+    const delays = [0, 3, 7.5, 17, 20]; // Specify the delay for each paragraph in seconds
+    const duration = 3; // Set a constant duration for all paragraphs
+  
+    paragraphs.forEach((paragraph, index) => {
+      gsap.to(paragraph, {
+        opacity: 1,
+        duration: duration, // All paragraphs fade in over the same duration
+        delay: delays[index] || 0, // Use the custom delay or default to 0 seconds if not specified
+        ease: "power3.inOut",
+      });
     });
-  }
-
-  function typeWriterEffect(text, callback, speed = 50) {
-    let index = 0;
-
-    // Use a buffered approach
-    function typeCharacter() {
-      if (index < text.length) {
-        textElement.textContent += text[index]; // Append a single character
-        index++;
-        setTimeout(typeCharacter, speed); // Delay before adding the next character
-      } else if (callback) {
-        callback(); // Trigger callback when typing is done
-      }
-    }
-
-    typeCharacter(); // Start typing
-  }
-
-  function formFadeIn() {
+  
+    // Trigger form fade-in after the last paragraph
+    const totalDelay = delays[delays.length - 1] + duration; // Last paragraph's delay + duration
     gsap.to(formElement, {
       opacity: 1,
+      delay: totalDelay,
       duration: 1.5,
       ease: "power3.inOut",
     });
   }
+  
+  
 
-  // Initialize the loading sequence
   loadGame();
 });
 
