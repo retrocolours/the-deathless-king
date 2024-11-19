@@ -6,6 +6,11 @@
   src: url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
   font-display: swap;
 } */
+*{
+  box-sizing: border-box;
+}
+
+
 
 body {
   /* font-family: "Courier New", monospace; */
@@ -19,7 +24,10 @@ body {
   min-height: 100vh;
   margin-top: 1rem; /* increase if needed image moved */
   margin-bottom: 1rem;
+  /* overflow: hidden; */
 }
+
+
 
 .title {
   font-size: 2.5em;
@@ -42,7 +50,7 @@ body {
 .about__image {
   width: 25%;
   height: 25%;
-  border: 2px solid #444;
+  border: 1px solid #444;
   border-radius: 5px;
 }
 
@@ -57,26 +65,57 @@ body {
   font-size: 1.2em;
   text-align: center;
   font-family: "Cardo", serif;
-  font-display: swap;
   caret-color: transparent;
+
+}
+
+.drop-cap {
+  font-size: 1.7em;
+  padding: 0;
+  line-height: 1;
+ /* color:#5f0606; */
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #f9f7f7;
-  padding: 1rem 7rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 1rem;
   font-family: "Alice", serif;
   font-weight: 400;
+  width: 40%;
   letter-spacing: 1px;
-  /* Space between text and form to prevent overlap */
+}
+
+label {
+  padding: 0.5rem;
+}
+
+#player-name {
+  background-color: rgb(0, 0, 0);
 }
 
 input::placeholder {
   font-family: "Alice", serif;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  /* background-color: #222; */
+  color: #e0e0e0;
+  width: 45%;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d5d5d5;
 }
 
 .loading-screen {
@@ -138,13 +177,15 @@ button:active {
   background-color: #777;
 }
 
-input[type="text"] {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background-color: #222;
-  color: #e0e0e0;
+.start-button {
+  width: 45%;
+  background-color: black;
+  font-family: "Alice", serif;
+  font-size: 1em;
+}
+
+.start-button:hover {
+  background-color: #850505;
 }
 
 .game-container {
