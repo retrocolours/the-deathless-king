@@ -1,16 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
-/* 
-@font-face {
-  font-family: "Cinzel Decorative";
-  src: url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
-  font-display: swap;
-} */
+
 *{
   box-sizing: border-box;
 }
-
-
 
 body {
   /* font-family: "Courier New", monospace; */
@@ -20,11 +13,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   min-height: 100vh;
-  margin-top: 1rem; /* increase if needed image moved */
+  /* margin-top: 1rem;  */
+  /* increase if needed image moved */
   margin-bottom: 1rem;
-  /* overflow: hidden; */
+  overflow: hidden;
+  justify-content: center;
+ 
 }
 
 
@@ -48,17 +43,34 @@ body {
 }
 
 .about__image {
-  width: 25%;
+  /* width: 25%;
   height: 25%;
   border: 1px solid #444;
-  border-radius: 5px;
+  border-radius: 5px; */
+  
+    position: fixed;
+    top: 0; 
+    right: 0; 
+    width:25%; 
+    height: auto; 
+    z-index: -100; 
+
+}
+
+.about__image2 {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  width:30%; 
+  height: auto; 
+  z-index: -100; 
 }
 
 .about__container {
   width: 100%;
   max-width: 700px;
-  height: auto; /* Adjust height to fit content without overflow */
-  overflow: hidden; /* Prevents scrolling */
+  height: auto; 
+  overflow: hidden; 
 }
 
 .about__description {
@@ -85,6 +97,7 @@ body {
   padding: 1rem;
   font-family: "Alice", serif;
   font-weight: 400;
+  font-size: 1.1rem;
   width: 40%;
   letter-spacing: 1px;
 }
