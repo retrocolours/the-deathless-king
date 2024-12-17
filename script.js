@@ -57,28 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function titleFadeInOut() {
-    gsap.to(titleElement, {
+    // Fade in both title and image at the same time
+    gsap.to([titleElement, villainImage], {
       opacity: 1,
-      duration: 3,
+      duration: 4,
       ease: "power3.inOut",
       onComplete: () => {
+        // Fade out the title after delay, but keep the image
         gsap.to(titleElement, {
-          delay: 2,
+          delay: 2, // Wait for 2 seconds before fading out the title
           opacity: 0,
           duration: 2,
           ease: "power3.inOut",
-          onComplete: () => villainImageFadeIn(),
+          onComplete: () => textFadeIn(), // Continue with text fade-in after title fades out
         });
       },
-    });
-  }
-
-  function villainImageFadeIn() {
-    gsap.to(villainImage, {
-      opacity: 1,
-      duration: 2.5,
-      ease: "power3.inOut",
-      onComplete: () => textFadeIn(),
     });
   }
 
@@ -86,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Array of custom delays for each paragraph
     const delays = [0, 3, 7.5, 17, 20]; // Specify the delay for each paragraph in seconds
     const duration = 3; // Set a constant duration for all paragraphs
-  
+
     paragraphs.forEach((paragraph, index) => {
       gsap.to(paragraph, {
         opacity: 1,
@@ -95,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power3.inOut",
       });
     });
-  
+
     // Trigger form fade-in after the last paragraph
     const totalDelay = delays[delays.length - 1] + duration; // Last paragraph's delay + duration
     gsap.to(formElement, {
@@ -105,8 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power3.inOut",
     });
   }
-  
-  
 
   loadGame();
 });
