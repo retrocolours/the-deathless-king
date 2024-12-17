@@ -11,7 +11,10 @@
     ></script>
     <script src="script.js" defer></script>
   </head>
+
   <body>
+
+
     <div id="loading-screen" class="loading-screen">
       <div class="loading-screen__bar">
         <div class="loading-screen__progress"></div>
@@ -21,22 +24,28 @@
 
     <h1 class="title">The Deathless King</h1>
 
+    <img
+    src="./assets/images/test2.webp"
+    alt="Main Villain"
+    class="about__image"
+  />
     <div class="about">
-      <img
-        src="./assets/images/king.jpeg"
-        alt="Main Villain"
-        class="about__image"
-      />
+     
+   
       <div class="about__container">
         <p class="about__description">
-          Greetings, wanderer. By some strange twist of fate, you have found
+          <span class="drop-cap">G</span>reetings, wanderer.</p> 
+          <p class="about__description"><span class="drop-cap">B</span>y some strange twist of fate, you have found
           your way into this forsaken realm—a game woven from the dark threads
-          of Eastern European lore and myth. I am the all-seeing presence that
+          of Eastern European lore and myth. </p>
+          <p class="about__description"><span class="drop-cap">I</span> am the all-seeing presence that
           presides over this place, and I bid you to sit by the flickering
           firelight. Here, you shall walk in the footsteps of heroes from
           ancient tales, though be warned: each choice you make shall carve your
-          fate, and every step shall be fraught with peril and mystery. Your
-          destiny lies before you. Dare you proceed?
+          fate, and every step shall be fraught with peril and mystery.</p>
+          <p class="about__description"><span class="drop-cap">Y</span>our
+          destiny lies before you.</p>
+          <p class="about__description"><span class="drop-cap">D</span>are you proceed?
         </p>
       </div>
     </div>
@@ -50,7 +59,9 @@
         placeholder="They call me..."
         required
       />
-      <button type="button" id="start-game-button">Start Game</button>
+      <button type="button" id="start-game-button" class="start-button">Start Game</button>
     </form>
+
   </body>
+
 </html>

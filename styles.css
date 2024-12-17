@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   /* font-family: "Courier New", monospace; */
   font-family: "Cinzel Decorative", serif;
@@ -8,10 +12,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   min-height: 100vh;
-  margin-top: 1rem; /* increase if needed image moved */
+  /* margin-top: 1rem;  */
+  /* increase if needed image moved */
   margin-bottom: 1rem;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .title {
@@ -19,9 +25,10 @@ body {
   margin: 10px;
   text-align: center;
   font-family: "Cinzel Decorative", serif;
+  font-display: swap;
   font-weight: 400;
-  color: #ad0a0a;
-  text-shadow: 0 0 5px #5f0606, 0 0 10px #5f0606, 0 0 15px #5f0606,
+  color: #000000;
+  text-shadow: 0 0 5px #ae0808, 0 0 10px #ae0606, 0 0 15px #5f0606,
     0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
 }
 
@@ -32,44 +39,108 @@ body {
 }
 
 .about__image {
-  width: 25%;
+  /* width: 25%;
   height: 25%;
-  border: 2px solid #444;
-  border-radius: 5px;
+  border: 1px solid #444;
+  border-radius: 5px; */
+
+  position: fixed;
+  top: 50;
+  right: 50;
+  width: 70%;
+  height: auto;
+  z-index: -100;
+  filter: contrast(150%) grayscale(100%) brightness(30%);
+
+  /* border: 1px solid #444; */
+
+  /*     
+    box-shadow: 0 0 30px 15px rgba(248, 246, 246, 0.6);  */
 }
+
+/* 
+.about__image2 {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  width: 25%; 
+  height: auto; 
+  z-index: -100; 
+  transform: scaleX(-1);
+  border: 1px solid #444;
+  box-shadow: 0 0 30px 15px rgba(248, 246, 246, 0.6); 
+} */
 
 .about__container {
   width: 100%;
   max-width: 700px;
-  height: auto; /* Adjust height to fit content without overflow */
-  overflow: hidden; /* Prevents scrolling */
+  height: auto;
+  overflow: hidden;
+
+  /* background-color: #353131;
+padding: 10px;
+opacity: 0.8;
+  display: inline-block;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6); */
 }
 
 .about__description {
   font-size: 1.2em;
-  text-align: justify;
+  text-align: center;
   font-family: "Cardo", serif;
-
-  padding-bottom: 1rem;
   caret-color: transparent;
+
+  /* text-shadow: 0 0 5px white, 0 0 10px white; */
+}
+
+.drop-cap {
+  font-size: 1.7em;
+  padding: 0;
+  line-height: 1;
+  /* color:#5f0606; */
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #f9f7f7;
-  padding: 1rem 7rem;
+  border: 1px solid #acaaaa;
+  border-radius: 5px;
+  padding: 1rem;
   font-family: "Alice", serif;
   font-weight: 400;
+  font-size: 1.1rem;
+  width: 40%;
   letter-spacing: 1px;
-  /* Space between text and form to prevent overlap */
+}
+
+label {
+  padding: 0.5rem;
+}
+
+#player-name {
+  background-color: rgb(0, 0, 0);
 }
 
 input::placeholder {
   font-family: "Alice", serif;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  /* background-color: #222; */
+  color: #e0e0e0;
+  width: 45%;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d5d5d5;
 }
 
 .loading-screen {
@@ -131,13 +202,15 @@ button:active {
   background-color: #777;
 }
 
-input[type="text"] {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background-color: #222;
-  color: #e0e0e0;
+.start-button {
+  width: 45%;
+  background-color: black;
+  font-family: "Alice", serif;
+  font-size: 1em;
+}
+
+.start-button:hover {
+  background-color: #850505;
 }
 
 .game-container {
@@ -181,4 +254,42 @@ input[type="text"] {
 .game-container__choice-button:focus {
   outline: none;
   border-color: #888;
+}
+
+.loading-screen__bar {
+  width: 100%;
+  max-width: 1000px;
+  height: 15px;
+  border: 1px solid #454444;
+  box-shadow: 0 0 10px rgb(138, 1, 1);
+  background-color: #040404;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Loading bar progress */
+.loading-screen__progress {
+  background: linear-gradient(90deg, #080808, #280202, #690303, #8a0404);
+  animation: glowing 2s linear infinite;
+}
+
+/* Glowing animation for progress bar */
+@keyframes glowing {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Percentage text */
+.loading-screen__percentage {
+  margin-top: 20px;
+  font-size: 1.8em;
+  color: #6d0606;
 }

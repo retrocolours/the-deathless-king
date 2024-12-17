@@ -1,4 +1,3 @@
-// Ensures DOM and GSAP are ready before starting
 document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
   const loadingProgressBar = document.querySelector(
@@ -8,23 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ".loading-screen__percentage"
   );
 
-  // Elements to load
   const titleElement = document.querySelector(".title");
   const villainImage = document.querySelector(".about__image");
-  const textElement = document.querySelector(".about__description");
+  const paragraphs = document.querySelectorAll(".about__container p");
   const formElement = document.querySelector(".form");
 
-  // Stores the initial text for typewriter effect and clears the element
-  const textContent = textElement.textContent;
-  textElement.textContent = "";
-
-  // Make elements invisible initially
-  gsap.set([titleElement, villainImage, textElement, formElement], {
+  // Hide elements initially
+  gsap.set([titleElement, villainImage, paragraphs, formElement], {
     opacity: 0,
   });
 
+  // Center title for dramatic effect
   gsap.set(titleElement, {
-    opacity: 0,
     fontSize: "4em",
     xPercent: -50,
     yPercent: -50,
@@ -51,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let randomIncrease = Math.floor(Math.random() * 10) + 1;
         currentValue += randomIncrease;
         if (currentValue > 100) currentValue = 100;
-        // Update progress bar and percentage
+
         loadingPercentageEl.textContent = `${currentValue}%`;
         gsap.to(loadingProgressBar, {
           width: `${currentValue}%`,
@@ -63,58 +57,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function titleFadeInOut() {
-    gsap.to(titleElement, {
+    // Fade in both title and image at the same time
+    gsap.to([titleElement, villainImage], {
       opacity: 1,
-      duration: 3,
+      duration: 4,
       ease: "power3.inOut",
       onComplete: () => {
+        // Fade out the title after delay, but keep the image
         gsap.to(titleElement, {
-          delay: 2,
+          delay: 2, // Wait for 2 seconds before fading out the title
           opacity: 0,
           duration: 2,
           ease: "power3.inOut",
-          onComplete: () => villainImageFadeIn(),
+          onComplete: () => textFadeIn(), // Continue with text fade-in after title fades out
         });
       },
     });
   }
 
-  function villainImageFadeIn() {
-    gsap.to(villainImage, {
-      opacity: 1,
-      duration: 2.5,
-      ease: "power3.inOut",
-      onComplete: () => textFadeIn(),
-    });
-  }
-
   function textFadeIn() {
-    gsap.to(textElement, {
-      opacity: 1,
-      duration: 1,
-      onComplete: () => typeText(textContent, formFadeIn, 60),
+    // Array of custom delays for each paragraph
+    const delays = [0, 3, 7.5, 17, 20]; // Specify the delay for each paragraph in seconds
+    const duration = 3; // Set a constant duration for all paragraphs
+
+    paragraphs.forEach((paragraph, index) => {
+      gsap.to(paragraph, {
+        opacity: 1,
+        duration: duration, // All paragraphs fade in over the same duration
+        delay: delays[index] || 0, // Use the custom delay or default to 0 seconds if not specified
+        ease: "power3.inOut",
+      });
     });
-  }
 
-  function typeText(text, callback, speed = 60) {
-    let index = 0;
-
-    function typeCharacter() {
-      if (index < text.length) {
-        textElement.textContent += text.charAt(index); // Append each character
-        index++;
-        setTimeout(typeCharacter, speed);
-      } else if (callback) {
-        setTimeout(callback, 500); // Delay before showing the form
-      }
-    }
-
-    typeCharacter();
-  }
-
-  function formFadeIn() {
+    // Trigger form fade-in after the last paragraph
+    const totalDelay = delays[delays.length - 1] + duration; // Last paragraph's delay + duration
     gsap.to(formElement, {
       opacity: 1,
+      delay: totalDelay,
       duration: 1.5,
       ease: "power3.inOut",
     });
@@ -123,27 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
   loadGame();
 });
 
-// Start Game button click handler
+// Start Game button functionality
 document
   .getElementById("start-game-button")
   .addEventListener("click", function () {
     const playerName = document.getElementById("player-name").value;
     if (playerName) {
       localStorage.setItem("playerName", playerName);
-      localStorage.setItem("gameStarted", "false"); // Reset game start flag
-      window.location.href = "game.html"; // Navigate to game.html
+      localStorage.setItem("gameStarted", "false");
+      window.location.href = "game.html"; // Navigate to game screen
     } else {
-      alert("Please enter your name!"); // Validate input
+      alert("Please enter your name!");
     }
   });
 
 localStorage.setItem("newGameStart", "true");
-
-// if (!localStorage.getItem("gameInProgress")) {
-//   localStorage.setItem("newGameStart", "true");
-// }
-
-// Additional click listener for the Start Game button to ensure navigation to game.html
-// document.getElementById("start-game-button").addEventListener("click", function() {
-//   window.location.href = "game.html";
-// });
