@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedInventory =
     JSON.parse(localStorage.getItem("inventoryItems")) || [];
   const gameStarted = localStorage.getItem("gameStarted") === "true";
-  const greetingText = `So you see yourself as a brave adventurer, ${playerName}. Let the story begin, then. \nYou find yourself in a dark forest in the middle of the night. The air is heavy with mist, and the shadows of ancient trees loom all around you. All you can remember is the bitter anger in your father’s voice as he cursed the name of The Deathless King—the ancient sorcerer who stole your mother away. You need to bring her back. \nYou clutch your only weapon—a simple blade your mother once gifted you, inscribed with a rune. What does it look like?`;
+  const greetingText = `So you claim to be a brave adventurer, ${playerName}. Let the story begin, then. \nYou find yourself in a dark forest in the middle of the night. The air is heavy with mist, and the shadows of ancient trees loom all around you. All you can remember is the bitter anger in your father’s voice as he cursed the name of The Deathless King — the ancient sorcerer who stole your mother away. You need to bring her back. \nYou clutch your only weapon — a simple blade your mother once gifted you, inscribed with a rune. What does it look like?`;
 
   const scenes = {
     premise: {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     explore: {
-      text: `You glance around, but everything is shadow. Suddenly, a distant glimmer catches your eye, drawing you deeper into the darkness. Slowly, the light sharpens into the shape of a small, crooked house perched on twisted legs, its windows flickering with an unnatural glow. A strange scent of herbs drifts from it, thick and metallic. You feel a pull toward the house, sensing it holds secrets of the forest and perhaps a clue to your quest. But as you pause, a silvered lake catches your eye beyond the house, its waters smooth as glass, casting a quiet, mythical glow that beckons as if calling your name. Will you knock on the door of the strange house… or follow the path to the lake, where the water whispers like a lullaby?`,
+      text: `Everything around you is shadow, until a faint glimmer draws your gaze deeper into the darkness. The light sharpens into a small, crooked house perched on twisted legs, its windows flickering with an unnatural glow, and the thick, metallic scent of herbs wafts from it. The house seems to hold secrets of the forest and perhaps a clue to your quest, but as you pause, a silvered lake beyond it catches your attention, its glassy waters glowing with a quiet, mythical light that whispers your name. Will you knock on the door of the strange house or follow the path to the lake's haunting call?`,
       choices: [
         { text: "Approach the strange-looking house", nextScene: "cabin" },
         { text: "Walk to the lake", nextScene: "lake" },
@@ -64,10 +64,38 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     witch: {
-      text: `The witch cackles as she reveals dark truths and spells of power. She grants you a dark talisman, but warns of its curse...`,
+      text: `The witch cackles as she reveals she has a valuable gift for you. She knows who you're seeking and offers her help. However, you must offer something in return. The Witch is asking for your blood, to bind the magic contract.`,
       choices: [
-        { text: "Take the talisman", nextScene: "end" },
-        { text: "Leave without it", nextScene: "explore" },
+        { text: "Sign in blood", nextScene: "gift" },
+        { text: "Refuse", nextScene: "fight" },
+      ],
+    },
+    gift: {
+      text: `The witch cuts the palm of your hand to take your blood, her eyes glimmering like smoldering coals. After the contract is complete she disappears in a dark corner of the house. She returns holding two objects in her gnarled hands. In her left, a small ball of glowing thread pulses faintly, its strands shimmering with an otherworldly light, twitching as if eager to leap from her palm. In her right, a crystal vial filled with dark liquid swirls ominously, its surface rippling like a restless shadow. “One will guide you through the unknown,” she croaks, “but it may lead you to truths you’d rather not see. The other will mend what is broken, but its cost may weigh heavier than the wound itself. Choose wisely, wanderer.”`,
+      choices: [
+        { text: "Glowing thread", nextScene: "thread" },
+        { text: "Mystical vials", nextScene: "vials" },
+      ],
+    },
+    thread: {
+      text: `The witch mutters ancient words and spits into her hand, shaping a small ball of glowing thread. She hands it to you with a crooked smile and whispers, “Throw it to the ground when you’re lost, and it will guide your steps.” The thread feels warm and alive in your hand, twitching as if eager to move. You sense it holds the wisdom of paths unseen. You have gained a new way forward.`,
+      choices: [
+        { text: "Say gratitudes and leave", nextScene: "forest" },
+        // { text: "Mystical vials", nextScene: "vials" },
+      ],
+    },
+   vials: {
+      text: `The witch dips two vials into her bubbling cauldron, one shimmering with vibrant life, the other swirling with cold, dark liquid. “Pour the black one to mend what is broken, and the bright one to awaken the still,” she says. The vials hum softly in your hands, their power undeniable. You feel the weight of their potential, the ability to heal and restore, or perhaps, to control life itself. You have gained the power of renewal.`,
+      choices: [
+        { text: "Leave", nextScene: "forest" },
+        { text: "Leave", nextScene: "forest" },
+      ],
+    },
+    forest: {
+      text: `The witch cuts the palm of your hand to take your blood, her eyes glimmering like smoldering coals. After the contract is complete she disappears in a dark corner of the house. She returns holding two objects in her gnarled hands. In her left, a small ball of glowing thread pulses faintly, its strands shimmering with an otherworldly light, twitching as if eager to leap from her palm. In her right, a crystal vial filled with dark liquid swirls ominously, its surface rippling like a restless shadow. “One will guide you through the unknown,” she croaks, “but it may lead you to truths you’d rather not see. The other will mend what is broken, but its cost may weigh heavier than the wound itself. Choose wisely, wanderer.”`,
+      choices: [
+        { text: "Sign in blood", nextScene: "choice" },
+        { text: "Refuse", nextScene: "explore" },
       ],
     },
     siren: {
