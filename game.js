@@ -128,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
       typeSceneText();
     }
   }
-
   function typeSceneText() {
     const scene = scenes[currentState.scene];
     if (scene) {
@@ -140,14 +139,42 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(`Scene "${currentState.scene}" not found in scenes map.`);
     }
   }
-
+  
+  function updateInventory(choice) {
+    let item;
+  
+    // Add item based on the player's choice
+    if (choice === "Strength") {
+      item = "Dagger, strength +1";
+    } else if (choice === "Protection") {
+      item = "Dagger, protection +1";
+    } else if (choice === "Glowing thread") {
+      item = "Ball of glowing thread";
+    } else if (choice === "Mystical vials") {
+      item = "Mystical vials (life and death)";
+    }
+  
+    // Checks if the item is already in the savedInventory before adding
+    if (item && !savedInventory.includes(item)) {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      inventoryList.appendChild(listItem);
+  
+      // Adds item to inventory array and saves it in localStorage
+      savedInventory.push(item);
+      localStorage.setItem("inventoryItems", JSON.stringify(savedInventory));
+      // Ensures the inventory box is visible when items are added
+      inventoryBox.classList.add("visible");
+    }
+  }
+  
   function renderChoices(choices) {
     choiceButtons.innerHTML = "";
     choices.forEach((choice) => {
       const button = document.createElement("button");
       button.classList.add("game-container__choice-button");
       button.innerText = choice.text;
-
+  
       if (choice.imageSrc) {
         const image = document.createElement("img");
         image.src = choice.imageSrc;
@@ -155,46 +182,24 @@ document.addEventListener("DOMContentLoaded", () => {
         image.classList.add("button-image");
         button.prepend(image);
       }
-
+  
       button.onclick = () => {
         currentState.scene = choice.nextScene;
         localStorage.setItem("currentScene", currentState.scene);
         textBox.innerHTML = "";
-        updateInventory(choice.text);
+        updateInventory(choice.text); // Call updateInventory here
         choiceButtons.innerHTML = "";
         typeSceneText();
       };
-
+  
       choiceButtons.appendChild(button);
     });
-
+  
     gsap.fromTo(
       choiceButtons.children,
       { opacity: 0 },
       { opacity: 1, duration: 1.5, ease: "power3.out" }
     );
-  }
-
-  function updateInventory(choice) {
-    let item;
-    if (choice === "Strength") {
-      item = "Dagger, strength +1";
-    } else if (choice === "Protection") {
-      item = "Dagger, protection +1";
-    }
-
-    // Checks if the item is already in the savedInventory before adding
-    if (item && !savedInventory.includes(item)) {
-      const listItem = document.createElement("li");
-      listItem.textContent = item;
-      inventoryList.appendChild(listItem);
-
-      // Adds item to inventory array and saves it in localStorage
-      savedInventory.push(item);
-      localStorage.setItem("inventoryItems", JSON.stringify(savedInventory));
-      // Ensures the inventory box is visible when items are added
-      inventoryBox.classList.add("visible");
-    }
   }
 
   function typeText(text, callback, speed = 60) {

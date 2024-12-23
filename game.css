@@ -27,15 +27,6 @@ body {
 
 
 .inventory {
-  /* /* display: none;
-  width: 15%;
-  height: 37%;
-  padding: 10px;
-  background-color: #000000;
-  color: #e0e0e0;
-  margin-right: 20px; */
-  
-  /* border-radius: 5px; */
   border-right: 1px solid #444; 
   flex-direction: column; 
   display: none;
@@ -45,10 +36,9 @@ body {
 
 
   padding: 1rem;
-  width: 200px; /* Adjust as needed */
-  height: 100vh; /* Full height for a sidebar-like effect */
-
-  overflow-y: auto; /* Allow scrolling if inventory grows */
+  width: 200px; 
+  height: 100vh; 
+  overflow-y: auto; 
 }
 
 .inventory.visible {
